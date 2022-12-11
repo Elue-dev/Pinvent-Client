@@ -5,7 +5,7 @@ import {
   RiProductHuntLine,
 } from "react-icons/ri";
 import menu from "../data/sidebar";
-import SidebarItem from "./SidebarItem";
+import SidebarItem from "../sidebar/Sidebaritem";
 import { useNavigate } from "react-router-dom";
 import "./sidebar.scss";
 
