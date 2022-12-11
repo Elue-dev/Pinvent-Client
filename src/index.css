@@ -488,7 +488,7 @@ a:hover {
   border-radius: 3px;
   font-weight: normal;
   color: #333;
-  border: 1px solid #333;
+  border: 1px solid var(--light-blue);
   margin: 2px;
 }
 
@@ -506,7 +506,7 @@ a:hover {
   .container {
     padding: 30px 20px;
   }
-  .logout-btn {
+  .dashboard_btn {
     font-size: 1rem;
     padding: 1rem 1rem;
   }

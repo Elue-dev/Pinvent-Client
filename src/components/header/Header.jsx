@@ -22,9 +22,9 @@ export default function Header() {
       <div className="--flex-between --my">
         <h3>
           <span className="--fw-thin">Welcome, </span>
-          <span className="--color-danger">{user.username}</span>
+          <span className="--color-primary">{user.username}</span>
         </h3>
-        <button onClick={logout} className="btn btn--green logout-btn">
+        <button onClick={logout} className="btn btn--green dashboard_btn ">
           Logout
         </button>
       </div>
