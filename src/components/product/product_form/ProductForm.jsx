@@ -4,7 +4,7 @@ import "react-quill/dist/quill.snow.css";
 import { BeatLoader } from "react-spinners";
 import Card from "../../card/Card";
 
-import "./ProductForm.scss";
+import "./productForm.scss";
 
 const ProductForm = ({
   product,
