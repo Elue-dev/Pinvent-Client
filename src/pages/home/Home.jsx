@@ -6,7 +6,7 @@ import heroImg from "../../assets/inv-img.png";
 import {
   ShowOnLogin,
   ShowOnLogout,
-} from "../../components/protect/hidden_links";
+} from "../../components/protect/Hidden_links";
 import { getUser } from "../../redux/features/auth/auth_slice";
 import { useSelector } from "react-redux";
 
