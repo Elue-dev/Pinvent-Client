@@ -35,7 +35,7 @@ export const loginUser = async (userData) => {
     }
     return response.data;
   } catch (error) {
-    showAlert("error", error.response?.data.message);
+    showAlert("error", error.response?.data.message || error.message);
   }
 };
 
@@ -45,7 +45,7 @@ export const logoutUser = async () => {
     showAlert("success", "Logout successful");
   } catch (error) {
     console.log(error);
-    showAlert("error", error.response?.data.message);
+    showAlert("error", error.response?.data.message || error.message);
   }
 };
 
@@ -58,7 +58,7 @@ export const forgotPassword = async (userData) => {
     showAlert("success", response.data.message);
   } catch (error) {
     console.log(error);
-    showAlert("error", error.response?.data.message);
+    showAlert("error", error.response?.data.message || error.message);
   }
 };
 
@@ -74,7 +74,7 @@ export const resetPassword = async (userData, token) => {
     return response.data;
   } catch (error) {
     console.log(error);
-    showAlert("error", error.response?.data.message);
+    showAlert("error", error.response?.data.message || error.message);
   }
 };
 
@@ -84,6 +84,6 @@ export const getLoginStatus = async () => {
     return response.data;
   } catch (error) {
     console.log(error);
-    showAlert("error", error.response?.data.message);
+    showAlert("error", error.response?.data.message || error.message);
   }
 };
