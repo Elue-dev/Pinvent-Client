@@ -39,7 +39,7 @@ export default function ProductSummary({ products }) {
         <InfoBox
           icon={productIcon}
           title={"Total Products"}
-          count={products.data.length}
+          count={products.data?.length}
           bgColor="card1"
         />
         <InfoBox

@@ -49,11 +49,12 @@ export default function ProductList({ products, isLoading }) {
     const endOffset = itemOffset + itemsPerPage;
 
     setCurrentItems(filteredProducts.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(filteredProducts.length / itemsPerPage));
+    setPageCount(Math.ceil(filteredProducts?.length / itemsPerPage));
   }, [itemOffset, itemsPerPage, filteredProducts]);
 
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % filteredProducts.length;
+    const newOffset =
+      (event.selected * itemsPerPage) % filteredProducts?.length;
     setItemOffset(newOffset);
   };
   //  pagination end
@@ -77,8 +78,8 @@ export default function ProductList({ products, isLoading }) {
           {search && (
             <p>
               <b>
-                {filteredProducts.length}{" "}
-                {filteredProducts.length === 1 ? "result" : "results"} for '
+                {filteredProducts?.length}{" "}
+                {filteredProducts?.length === 1 ? "result" : "results"} for '
                 <em className="--color-primary">{search} </em>'
               </b>
             </p>
