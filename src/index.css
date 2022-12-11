@@ -506,9 +506,7 @@ a:hover {
   .container {
     padding: 30px 20px;
   }
-  .btn,
-  .btn:link,
-  .btn:visited {
+  .logout-btn {
     font-size: 1rem;
     padding: 1rem 1rem;
   }

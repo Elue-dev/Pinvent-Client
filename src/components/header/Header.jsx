@@ -24,7 +24,7 @@ export default function Header() {
           <span className="--fw-thin">Welcome, </span>
           <span className="--color-danger">{user.username}</span>
         </h3>
-        <button onClick={logout} className="btn btn--green">
+        <button onClick={logout} className="btn btn--green logout-btn">
           Logout
         </button>
       </div>

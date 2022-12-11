@@ -32,8 +32,12 @@
   box-shadow: 0 2rem 4rem rgb(0 0 0 / 25%);
 }
 .alert--success {
-  background-color: #20bf6b;
+  background: rgb(192, 255, 224);
+  color: green;
+  // background-color: #20bf6b;
 }
 .alert--error {
-  background-color: #eb4d4b;
+  background: pink;
+  color: crimson;
+  // background-color: #eb4d4b;
 }
