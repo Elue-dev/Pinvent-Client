@@ -49,7 +49,7 @@ const product_service = createSlice({
     CALC_STORE_VALUE: (state, action) => {
       const { products } = action.payload;
       const array = [];
-      products.map((prod) => {
+      products?.map((prod) => {
         const { price, quantity } = prod;
         const productValue = price * quantity;
         return array.push(productValue);
@@ -63,7 +63,7 @@ const product_service = createSlice({
     CALC_OUT_OF_STOCK: (state, action) => {
       const { products } = action.payload;
       const array = [];
-      products.map((prod) => {
+      products?.map((prod) => {
         const { quantity } = prod;
         return array.push(quantity);
       });
@@ -78,7 +78,7 @@ const product_service = createSlice({
     CALC_CAREGORIES: (state, action) => {
       const { products } = action.payload;
       let array = [];
-      products.map((prod) => {
+      products?.map((prod) => {
         const { category } = prod;
         return array.push(category);
       });
