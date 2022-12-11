@@ -82,7 +82,8 @@ const product_service = createSlice({
         const { category } = prod;
         return array.push(category);
       });
-      state.category = array.length;
+      const uniqueCategory = [...new Set(array)];
+      state.category = uniqueCategory.length;
     },
   },
   extraReducers: (builder) => {
