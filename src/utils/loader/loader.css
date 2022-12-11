@@ -1,0 +1,40 @@
+a {
+  transition: none;
+}
+
+a.active {
+  background-color: #fff;
+  border: 0;
+  color: #333;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+label {
+  display: block;
+}
+
+.loader {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+.loader::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  z-index: -1;
+}
+.loader .loader__icon {
+  font-size: 7rem;
+}/*# sourceMappingURL=loader.css.map */

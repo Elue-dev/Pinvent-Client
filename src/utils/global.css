@@ -1,0 +1,15 @@
+a {
+  transition: none;
+}
+
+a.active {
+  background-color: #fff;
+  border: 0;
+  color: #333;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+label {
+  display: block;
+}/*# sourceMappingURL=global.css.map */
