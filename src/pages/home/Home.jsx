@@ -1,12 +1,12 @@
 import React from "react";
 import { RiProductHuntLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
-import "./home.scss";
+import "./Home.scss";
 import heroImg from "../../assets/inv-img.png";
 import {
   ShowOnLogin,
   ShowOnLogout,
-} from "../../components/protect/Hidden_links";
+} from "../../components/protect/hidden_links";
 import { getUser } from "../../redux/features/auth/auth_slice";
 import { useSelector } from "react-redux";
 

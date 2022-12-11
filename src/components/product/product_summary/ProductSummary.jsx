@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import "./productSummary.scss";
 import InfoBox from "../../info_box/InfoBox";
+
+import { useEffect } from "react";
 import {
   CALC_CAREGORIES,
   CALC_OUT_OF_STOCK,
@@ -13,7 +15,6 @@ import {
   selectOutOfStock,
   selectTotalStoreValue,
 } from "../../../redux/features/product/product_slice";
-import { useEffect } from "react";
 
 const earningIcon = <AiFillDollarCircle size={40} color="#fff" />;
 const productIcon = <BsCart4 size={40} color="#fff" />;

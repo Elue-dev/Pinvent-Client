@@ -8,7 +8,6 @@ import "./productList.scss";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ReactPaginate from "react-paginate";
-
 import {
   FILTER_PRODUCTS,
   selectFilteredProducts,
@@ -18,18 +17,6 @@ export default function ProductList({ products, isLoading }) {
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
   const filteredProducts = useSelector(selectFilteredProducts);
-
-  if (isLoading) {
-    return (
-      <div className="loader">
-        <ClipLoader
-          color={"rgba(14, 16, 30, 0.937)"}
-          loading={true}
-          size={50}
-        />
-      </div>
-    );
-  }
 
   const shortenText = (text, n) => {
     if (text.length > n) {
@@ -84,6 +71,15 @@ export default function ProductList({ products, isLoading }) {
               </b>
             </p>
           )}
+          {isLoading && (
+            <div className="loader">
+              <ClipLoader
+                color={"rgba(14, 16, 30, 0.937)"}
+                loading={true}
+                size={50}
+              />
+            </div>
+          )}
           <span>
             <Search
               value={search}
@@ -92,73 +88,88 @@ export default function ProductList({ products, isLoading }) {
             />
           </span>
         </div>
-        <div className="table">
-          {!isLoading && products.results === 0 ? (
-            <p>No Product Found. Please add a product.</p>
-          ) : (
-            <table>
-              <thead>
-                <tr>
-                  <th>S/N</th>
-                  <th>Name</th>
-                  <th>Category</th>
-                  <th>Price</th>
-                  <th>Quantity</th>
-                  <th>Value</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {currentItems?.map((product, index) => {
-                  const { _id, name, category, price, quantity } = product;
-                  return (
-                    <tr key={_id}>
-                      <td>{index + 1}</td>
-                      <td>{shortenText(name)}</td>
-                      <td>{category}</td>
-                      <td>${price}</td>
-                      <td>{quantity}</td>
-                      <td>${price * quantity}</td>
-                      <td className="icons">
-                        <span>
-                          <Link to={`/product-detail/${_id}`}>
-                            <AiOutlineEye size={25} color={"purple"} />
-                          </Link>
-                        </span>
-                        <span>
-                          <Link to={`/edit-product/${_id}`}>
-                            <FaEdit size={20} color={"green"} />
-                          </Link>
-                        </span>
-                        <span>
-                          <FaTrashAlt
-                            size={20}
-                            color={"red"}
-                            onClick={() => confirmDelete(_id)}
-                          />
-                        </span>
-                      </td>
+        {!isLoading && (
+          <>
+            <div className="table">
+              {!isLoading && products.results === 0 ? (
+                <div>
+                  <h4 className="no_results">
+                    You have not added any product yet. Start adding some!
+                  </h4>
+                  <div className="--flex-center">
+                    <Link to="/add-product">
+                      <button className="btn btn--green dashboard_btn ">
+                        Add Product
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+              ) : (
+                <table>
+                  <thead>
+                    <tr>
+                      <th>S/N</th>
+                      <th>Name</th>
+                      <th>Category</th>
+                      <th>Price</th>
+                      <th>Quantity</th>
+                      <th>Value</th>
+                      <th>Action</th>
                     </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          )}
-        </div>
-        <ReactPaginate
-          breakLabel="..."
-          nextLabel="Next"
-          onPageChange={handlePageClick}
-          pageRangeDisplayed={3}
-          pageCount={pageCount}
-          previousLabel="Prev"
-          renderOnZeroPageCount={null}
-          containerClassName="pagination"
-          pageLinkClassName="page-num"
-          previousLinkClassName="page-num"
-          nextLinkClassName="page-num"
-          activeLinkClassName="activePage"
-        />
+                  </thead>
+                  <tbody>
+                    {currentItems?.map((product, index) => {
+                      const { _id, name, category, price, quantity } = product;
+                      return (
+                        <tr key={_id}>
+                          <td>{index + 1}</td>
+                          <td>{shortenText(name)}</td>
+                          <td>{category}</td>
+                          <td>${price}</td>
+                          <td>{quantity}</td>
+                          <td>${price * quantity}</td>
+                          <td className="icons">
+                            <span>
+                              <Link to={`/product-detail/${_id}`}>
+                                <AiOutlineEye size={25} color={"purple"} />
+                              </Link>
+                            </span>
+                            <span>
+                              <Link to={`/edit-product/${_id}`}>
+                                <FaEdit size={20} color={"green"} />
+                              </Link>
+                            </span>
+                            <span>
+                              <FaTrashAlt
+                                size={20}
+                                color={"red"}
+                                onClick={() => confirmDelete(_id)}
+                              />
+                            </span>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              )}
+            </div>
+            <ReactPaginate
+              breakLabel="..."
+              nextLabel="Next"
+              onPageChange={handlePageClick}
+              pageRangeDisplayed={3}
+              pageCount={pageCount}
+              previousLabel="Prev"
+              renderOnZeroPageCount={null}
+              containerClassName="pagination"
+              pageLinkClassName="page-num"
+              previousLinkClassName="page-num"
+              nextLinkClassName="page-num"
+              activeLinkClassName="activePage"
+            />
+          </>
+        )}
       </div>
     </div>
   );

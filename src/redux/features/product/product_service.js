@@ -1,4 +1,5 @@
 import axios from "axios";
+import { showAlert } from "../../../utils/alert/Alert";
 
 const server_url = import.meta.env.VITE_REACT_APP_SERVER_URL;
 
@@ -7,14 +8,20 @@ const createProduct = async (formData) => {
   return response.data;
 };
 
-const getAllProducts = async () => {
-  const response = await axios.get(`${server_url}/api/v1/products`);
+export const getAllProducts = async () => {
+  try {
+    const response = await axios.get(`${server_url}/api/v1/products`);
+    return response.data;
+  } catch (error) {
+    showAlert("error", error.response?.data.message || error.message);
+  }
+
   return response.data;
 };
 
 const productService = {
   createProduct,
-  getAllProducts,
+  // getAllProducts,
 };
 
 export default productService;
