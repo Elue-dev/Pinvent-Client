@@ -69,7 +69,7 @@ export const resetPassword = async (userData, token) => {
       userData
     );
     if (response?.data.status === "success") {
-      showAlert("success", "Password reset successful!");
+      showAlert("success", "Password reset successful! Please login");
     }
     return response.data;
   } catch (error) {
