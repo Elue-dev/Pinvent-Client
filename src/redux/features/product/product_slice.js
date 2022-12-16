@@ -1,5 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { useSelector } from "react-redux";
 import { showAlert } from "../../../utils/alert/Alert";
+import { getUserToken } from "../auth/auth_slice";
 import productService from "./product_service";
 
 const initialState = {
@@ -17,8 +19,9 @@ const initialState = {
 export const createProduct = createAsyncThunk(
   "products/create", // give it a name
   async (formData, thunkAPI) => {
+    const token = useSelector(getUserToken);
     try {
-      return await productService.createProduct(formData);
+      return await productService.createProduct(formData, token);
     } catch (error) {
       console.log(error);
       const message = error.response?.data.message;

@@ -6,13 +6,14 @@ import { useDispatch, useSelector } from "react-redux";
 // import useRedirectLoggedOutUser from "../../customHook/useRedirectLoggedOutUser";
 // import { getProducts } from "../../redux/features/product/productSlice";
 
-import { getUser } from "../../redux/features/auth/auth_slice";
+import { getUser, getUserToken } from "../../redux/features/auth/auth_slice";
 import { getAllProducts } from "../../redux/features/product/product_service";
 import ProductList from "../product/product_list/ProductList";
 import ProductSummary from "../product/product_summary/ProductSummary";
 
 export default function Dashboard() {
   const user = useSelector(getUser);
+  const token = useSelector(getUserToken);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   // console.log(user);
@@ -21,7 +22,7 @@ export default function Dashboard() {
     const getProducts = async () => {
       try {
         setLoading(true);
-        const data = await getAllProducts();
+        const data = await getAllProducts(token);
         setProducts(data);
         setLoading(false);
       } catch (error) {

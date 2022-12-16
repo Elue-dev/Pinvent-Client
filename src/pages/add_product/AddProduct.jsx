@@ -2,8 +2,10 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import ProductForm from "../../components/product/product_form/ProductForm";
+import { getUserToken } from "../../redux/features/auth/auth_slice";
+import { createProduct } from "../../redux/features/product/product_service";
 import {
-  createProduct,
+  // createProduct,
   selectisLoading,
 } from "../../redux/features/product/product_slice";
 
@@ -19,9 +21,12 @@ export default function AddProduct() {
   const [productImage, setProductImage] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
   const [description, setDescription] = useState("");
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const token = useSelector(getUserToken);
 
-  const isLoading = useSelector(selectisLoading);
+  // const isLoading = useSelector(selectisLoading);
 
   const { name, category, quantity, price } = product;
 
@@ -43,8 +48,10 @@ export default function AddProduct() {
     return sku;
   };
 
-  const saveProduct = (e) => {
+  const saveProduct = async (e) => {
     e.preventDefault();
+
+    setLoading(true);
 
     const formData = new FormData();
 
@@ -56,7 +63,9 @@ export default function AddProduct() {
     formData.append("description", description);
     formData.append("image", productImage);
 
-    dispatch(createProduct(formData));
+    const res = await createProduct(formData, token);
+    setLoading(false);
+    res ? navigate("/dashboard") : null;
   };
 
   return (
@@ -64,7 +73,7 @@ export default function AddProduct() {
       <h3 className="--mt">Add new Product</h3>
       <div>
         <ProductForm
-          isLoading={isLoading}
+          loading={loading}
           product={product}
           productImage={productImage}
           imagePreview={imagePreview}

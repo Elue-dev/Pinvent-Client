@@ -15,7 +15,7 @@ const ProductForm = ({
   handleInputChange,
   handleImageChange,
   saveProduct,
-  isLoading,
+  loading,
 }) => {
   return (
     <div className="add-product">
@@ -86,9 +86,9 @@ const ProductForm = ({
           />
 
           <div className="--my">
-            {isLoading ? (
+            {loading ? (
               <button type="submit" className="btn btn--green dashboard_btn ">
-                <BeatLoader loading={isLoading} size={10} color={"#fff"} />
+                <BeatLoader loading={loading} size={10} color={"#fff"} />
               </button>
             ) : (
               <button type="submit" className="btn btn--green dashboard_btn ">

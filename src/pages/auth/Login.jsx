@@ -2,7 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
-import { SET_ACTIVE_USER } from "../../redux/features/auth/auth_slice";
+import {
+  SET_ACTIVE_USER,
+  SET_USER_TOKEN,
+} from "../../redux/features/auth/auth_slice";
 import { loginUser } from "../../services/auth_service";
 import { showAlert } from "../../utils/alert/Alert";
 import "./auth.scss";
@@ -46,7 +49,9 @@ export default function Login() {
       setError(null);
 
       const user = await loginUser(userData);
+      console.log(user.token);
       dispatch(SET_ACTIVE_USER(user.data));
+      dispatch(SET_USER_TOKEN(user.token));
 
       setLoading(false);
       user ? navigate("/dashboard") : null;
