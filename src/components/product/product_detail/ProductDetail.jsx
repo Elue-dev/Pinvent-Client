@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Card from "../../card/Card";
-import "./ProductDetail.scss";
 import DOMPurify from "dompurify";
 import { getSingleProduct } from "../../../redux/features/product/product_service";
 import { getUserToken } from "../../../redux/features/auth/auth_slice";

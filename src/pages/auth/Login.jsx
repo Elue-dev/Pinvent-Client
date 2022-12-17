@@ -49,7 +49,6 @@ export default function Login() {
       setError(null);
 
       const user = await loginUser(userData);
-      console.log(user.token);
       dispatch(SET_ACTIVE_USER(user.data));
       dispatch(SET_USER_TOKEN(user.token));
 

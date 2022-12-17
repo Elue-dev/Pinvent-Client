@@ -88,9 +88,11 @@ export const getLoginStatus = async () => {
   }
 };
 
-export const getUserProfile = async () => {
+export const getUserProfile = async (token) => {
   try {
-    const response = await axios.get(`${server_url}/api/v1/users/get-me`);
+    const response = await axios.get(`${server_url}/api/v1/users/get-me`, {
+      headers: { authorization: `Bearer ${token}` },
+    });
     return response.data;
   } catch (error) {
     console.log(error);

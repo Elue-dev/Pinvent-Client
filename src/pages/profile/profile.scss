@@ -1,0 +1,46 @@
+.profile {
+  .card {
+    max-width: 700px;
+    display: flex;
+    justify-content: flex-start;
+
+    padding: 1rem 0;
+
+    span.profile-photo {
+      text-align: center;
+    }
+
+    img {
+      width: 100%;
+      max-width: 350px;
+      padding-right: 1rem;
+      padding-left: 1rem;
+    }
+    span.profile-data {
+      margin: 0 1rem;
+    }
+    span.profile-data > * {
+      border-top: 1px solid #ccc;
+      padding: 5px 0;
+      border-width: thick;
+    }
+  }
+
+  button {
+    margin-top: 1rem;
+  }
+
+  p {
+    margin-bottom: 1rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  span.profile-photo {
+    margin: inherit;
+    margin-bottom: 1rem;
+  }
+  .profile .card {
+    flex-direction: column;
+  }
+}
