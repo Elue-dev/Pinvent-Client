@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Card from "../../card/Card";
 import "./ProductDetail.scss";
@@ -11,8 +11,8 @@ import "./productDetail.scss";
 
 const ProductDetail = () => {
   const [product, setProduct] = useState([]);
-  const [loading, setLoading] = useState(false);
   const { prodId } = useParams();
+
   const token = useSelector(getUserToken);
 
   const stockStatus = (quantity) => {
@@ -25,13 +25,10 @@ const ProductDetail = () => {
   useEffect(() => {
     const getProduct = async () => {
       try {
-        setLoading(true);
         const prod = await getSingleProduct(token, prodId);
         setProduct(prod);
-        setLoading(false);
       } catch (error) {
         console.log(error);
-        setLoading(false);
       }
     };
 

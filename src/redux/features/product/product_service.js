@@ -73,14 +73,18 @@ export const getSingleProduct = async (token, prodId) => {
   return response.data;
 };
 
-export const updateProduct = async (token, prodId) => {
+export const updateProduct = async (formData, token, prodId, prodName) => {
   try {
     const response = await axios.patch(
       `${server_url}/api/v1/products/${prodId}`,
+      formData,
       {
         headers: { authorization: `Bearer ${token}` },
       }
     );
+    if (response?.data.status === "success") {
+      showAlert("success", `${prodName} successfully updated`);
+    }
     return response.data;
   } catch (error) {
     console.log(error.response?.data.message || error.message);

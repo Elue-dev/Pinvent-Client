@@ -133,7 +133,7 @@ export const { CALC_STORE_VALUE, CALC_OUT_OF_STOCK, CALC_CAREGORIES } =
 export const selectisLoading = (state) => state.product.isLoading;
 // export const selectisSuccess = (state) => state.product.isSuccess;
 // export const selectisError = (state) => state.product.isError;
-// export const selectProducts = (state) => state.product.products;
+export const selectProducts = (state) => state.product.products;
 export const selectTotalStoreValue = (state) => state.product.totalStoreValue;
 export const selectOutOfStock = (state) => state.product.outOfStock;
 export const selectCategories = (state) => state.product.category;
