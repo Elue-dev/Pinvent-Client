@@ -42,7 +42,7 @@ export const loginUser = async (userData) => {
 export const logoutUser = async () => {
   try {
     await axios.get(`${server_url}/api/v1/users/logout`);
-    showAlert("success", "Logout successful");
+    // console.log("success", "Logout successful");
   } catch (error) {
     console.log(error);
     showAlert("error", error.response?.data.message || error.message);

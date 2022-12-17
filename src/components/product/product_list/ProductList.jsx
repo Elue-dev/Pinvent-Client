@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ClipLoader } from "react-spinners";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Search from "../../search/Search";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { AiOutlineEye } from "react-icons/ai";
@@ -8,15 +8,21 @@ import "./productList.scss";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ReactPaginate from "react-paginate";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 import {
   FILTER_PRODUCTS,
   selectFilteredProducts,
 } from "../../../redux/features/product/filter_slice";
+import { deleteProduct } from "../../../redux/features/product/product_service";
+import { getUserToken } from "../../../redux/features/auth/auth_slice";
 
 export default function ProductList({ products, isLoading }) {
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const filteredProducts = useSelector(selectFilteredProducts);
+  const token = useSelector(getUserToken);
 
   const shortenText = (text, n) => {
     if (text.length > n) {
@@ -54,6 +60,27 @@ export default function ProductList({ products, isLoading }) {
       })
     );
   }, [dispatch, products, search]);
+
+  const delProduct = async (id, name) => {
+    await deleteProduct(token, id, name);
+    location.assign("/dashboard");
+  };
+
+  const confirmDelete = async (id, name) => {
+    confirmAlert({
+      title: "Delete Product",
+      message: `Are you sure you want to delete ${name}?`,
+      buttons: [
+        {
+          label: "Delete",
+          onClick: () => delProduct(id, name),
+        },
+        {
+          label: "Cancel",
+        },
+      ],
+    });
+  };
 
   return (
     <div className="product-list">
@@ -130,7 +157,7 @@ export default function ProductList({ products, isLoading }) {
                           <td>${price * quantity}</td>
                           <td className="icons">
                             <span>
-                              <Link to={`/product-detail/${_id}`}>
+                              <Link to={`/product/${_id}`}>
                                 <AiOutlineEye size={25} color={"purple"} />
                               </Link>
                             </span>
@@ -143,7 +170,7 @@ export default function ProductList({ products, isLoading }) {
                               <FaTrashAlt
                                 size={20}
                                 color={"red"}
-                                onClick={() => confirmDelete(_id)}
+                                onClick={() => confirmDelete(_id, name)}
                               />
                             </span>
                           </td>

@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Dashboard from "./components/dashboard/Dashboard";
 import Layout from "./components/layout/Layout";
+import ProductDetail from "./components/product/product_detail/ProductDetail";
 import ProtectAuthRoutes from "./components/protect/Protect_auth_routes";
 import ProtectRoute from "./components/protect/Protect_route";
 import Sidebar from "./components/sidebar/Sidebar";
@@ -9,6 +10,7 @@ import ForgotPassword from "./pages/auth/ForgotPassword";
 import Login from "./pages/auth/Login";
 import ResetPassword from "./pages/auth/ResetPassword";
 import Signup from "./pages/auth/Signup";
+import EditProduct from "./pages/edit_product/EditProduct";
 import Home from "./pages/home/Home";
 
 const routes = createBrowserRouter([
@@ -67,6 +69,30 @@ const routes = createBrowserRouter([
         <Sidebar>
           <Layout>
             <AddProduct />
+          </Layout>
+        </Sidebar>
+      </ProtectRoute>
+    ),
+  },
+  {
+    path: "/product/:prodId",
+    element: (
+      <ProtectRoute>
+        <Sidebar>
+          <Layout>
+            <ProductDetail />
+          </Layout>
+        </Sidebar>
+      </ProtectRoute>
+    ),
+  },
+  {
+    path: "/edit-product/:prodId",
+    element: (
+      <ProtectRoute>
+        <Sidebar>
+          <Layout>
+            <EditProduct />
           </Layout>
         </Sidebar>
       </ProtectRoute>
