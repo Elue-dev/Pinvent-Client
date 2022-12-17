@@ -46,7 +46,6 @@ export default function EditProduct() {
   }, []);
 
   useEffect(() => {
-    // setProduct(prod);
     setImagePreview(
       product && product.image ? `${product.image.filePath}` : null
     );

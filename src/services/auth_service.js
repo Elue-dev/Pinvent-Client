@@ -87,3 +87,13 @@ export const getLoginStatus = async () => {
     showAlert("error", error.response?.data.message || error.message);
   }
 };
+
+export const getUserProfile = async () => {
+  try {
+    const response = await axios.get(`${server_url}/api/v1/users/get-me`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    showAlert("error", error.response?.data.message || error.message);
+  }
+};

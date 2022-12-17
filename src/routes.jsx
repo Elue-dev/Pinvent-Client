@@ -12,6 +12,7 @@ import ResetPassword from "./pages/auth/ResetPassword";
 import Signup from "./pages/auth/Signup";
 import EditProduct from "./pages/edit_product/EditProduct";
 import Home from "./pages/home/Home";
+import Profile from "./pages/profile/Profile";
 
 const routes = createBrowserRouter([
   {
@@ -93,6 +94,18 @@ const routes = createBrowserRouter([
         <Sidebar>
           <Layout>
             <EditProduct />
+          </Layout>
+        </Sidebar>
+      </ProtectRoute>
+    ),
+  },
+  {
+    path: "/profile",
+    element: (
+      <ProtectRoute>
+        <Sidebar>
+          <Layout>
+            <Profile />
           </Layout>
         </Sidebar>
       </ProtectRoute>
