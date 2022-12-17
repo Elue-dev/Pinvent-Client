@@ -15,7 +15,6 @@ export default function ForgotPassword() {
   const [visible, setVisible] = useState(false);
   const emailRef = useRef(null);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   useEffect(() => {
     emailRef.current.focus();
@@ -35,8 +34,10 @@ export default function ForgotPassword() {
     try {
       setLoading(true);
       setError(null);
-      await forgotPassword({ email });
+      const res = await forgotPassword({ email });
+      setEmail("");
       setLoading(false);
+      res ? navigate("/login") : null;
     } catch (error) {
       setLoading(false);
       console.log(error);
