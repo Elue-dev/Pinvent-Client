@@ -512,11 +512,24 @@ textarea {
   .container {
     padding: 30px 20px;
   }
-  .dashboard_btn {
-    font-size: 1rem;
-    padding: 1rem 1rem;
+  main {
+    padding-left: 45px;
   }
   .header h3 {
     font-size: 1.5rem;
+  }
+  .btn {
+    padding: 1rem 3rem;
+  }
+  .dashboard_btn {
+    font-size: 1rem;
+    padding: 1rem;
+    margin-top: -1rem;
+  }
+  .--pad {
+    padding: 0px 6px;
+  }
+  .--my {
+    margin: 2rem 0;
   }
 }

@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 const activeLink = ({ isActive }) => (isActive ? "active" : "link");
 const activeSublink = ({ isActive }) => (isActive ? "active" : "link");
 
-const SidebarItem = ({ item, isOpen }) => {
+const SidebarItem = ({ item, isOpen, setIsOpen }) => {
   const [expandMenu, setExpandMenu] = useState(false);
 
   if (item.childrens) {
@@ -30,7 +30,11 @@ const SidebarItem = ({ item, isOpen }) => {
           {item.childrens.map((child, index) => {
             return (
               <div key={index} className="s-child">
-                <NavLink to={child.path} className={activeSublink}>
+                <NavLink
+                  to={child.path}
+                  className={activeSublink}
+                  onClick={() => setIsOpen(false)}
+                >
                   <div className="sidebar-item">
                     <div className="sidebar-title">
                       <span>
@@ -48,7 +52,11 @@ const SidebarItem = ({ item, isOpen }) => {
     );
   } else {
     return (
-      <NavLink to={item.path} className={activeLink}>
+      <NavLink
+        to={item.path}
+        className={activeLink}
+        onClick={() => setIsOpen(false)}
+      >
         <div className="sidebar-item s-parent">
           <div className="sidebar-title">
             <span>

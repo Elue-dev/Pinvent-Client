@@ -150,13 +150,16 @@ export default function Signup() {
             )}
           </div>
 
-          <div>
-            <h4>
+          <div className="action">
+            <p>
               Have an account?{" "}
-              <Link to="/login" className="a_link">
+              <Link to="/login">
                 <span>Login</span>
               </Link>
-            </h4>
+            </p>
+            <p>
+              <Link to="/">Home</Link>
+            </p>
           </div>
         </form>
       </div>

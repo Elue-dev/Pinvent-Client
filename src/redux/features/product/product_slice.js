@@ -1,8 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { useSelector } from "react-redux";
-import { showAlert } from "../../../utils/alert/Alert";
-import { getUserToken } from "../auth/auth_slice";
-import productService from "./product_service";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   product: null,
@@ -15,35 +11,6 @@ const initialState = {
   outOfStock: 0,
   category: [],
 };
-
-export const createProduct = createAsyncThunk(
-  "products/create", // give it a name
-  async (formData, thunkAPI) => {
-    const token = useSelector(getUserToken);
-    try {
-      return await productService.createProduct(formData, token);
-    } catch (error) {
-      console.log(error);
-      const message = error.response?.data.message;
-      showAlert("error", message);
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
-);
-
-// export const getProducts = createAsyncThunk(
-//   "products/getAll",
-//   async (_, thunkAPI) => {
-//     try {
-//       return await productService.getAllProducts();
-//     } catch (error) {
-//       console.log(error);
-//       const message = error.response?.data.message;
-//       showAlert("error", message);
-//       return thunkAPI.rejectWithValue(message);
-//     }
-//   }
-// );
 
 const product_service = createSlice({
   name: "product",
@@ -89,50 +56,12 @@ const product_service = createSlice({
       state.category = uniqueCategory.length;
     },
   },
-  extraReducers: (builder) => {
-    builder
-      .addCase(createProduct.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(createProduct.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isSuccess = true;
-        state.isError = false;
-        state.products.push(action.payload);
-        showAlert("success", "Product added successfully!");
-        location.assign("/dashboard");
-      })
-      .addCase(createProduct.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.message = action.payload;
-        showAlert("error", action.payload);
-      });
-    // .addCase(getProducts.pending, (state) => {
-    //   state.isLoading = true;
-    // })
-    // .addCase(getProducts.fulfilled, (state, action) => {
-    //   state.isLoading = false;
-    //   state.isSuccess = true;
-    //   state.isError = false;
-    //   state.products = action.payload;
-    //   location.assign("/dashboard");
-    // })
-    // .addCase(getProducts.rejected, (state, action) => {
-    //   state.isLoading = false;
-    //   state.isError = true;
-    //   state.message = action.payload;
-    //   showAlert("error", action.payload);
-    // });
-  },
 });
 
 export const { CALC_STORE_VALUE, CALC_OUT_OF_STOCK, CALC_CAREGORIES } =
   product_service.actions;
 
 export const selectisLoading = (state) => state.product.isLoading;
-// export const selectisSuccess = (state) => state.product.isSuccess;
-// export const selectisError = (state) => state.product.isError;
 export const selectProducts = (state) => state.product.products;
 export const selectTotalStoreValue = (state) => state.product.totalStoreValue;
 export const selectOutOfStock = (state) => state.product.outOfStock;

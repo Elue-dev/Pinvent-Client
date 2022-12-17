@@ -109,13 +109,16 @@ export default function Login() {
               </button>
             )}
           </div>
-          <div>
-            <h4>
+          <div className="action">
+            <p>
               Need an account?{" "}
-              <Link to="/register" className="a_link">
+              <Link to="/register">
                 <span>Register</span>
               </Link>
-            </h4>
+            </p>
+            <p>
+              <Link to="/">Home</Link>
+            </p>
           </div>
         </form>
       </div>

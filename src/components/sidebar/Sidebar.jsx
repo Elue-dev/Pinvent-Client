@@ -38,7 +38,14 @@ const Sidebar = ({ children }) => {
           </div>
         </div>
         {menu.map((item, index) => {
-          return <SidebarItem key={index} item={item} isOpen={isOpen} />;
+          return (
+            <SidebarItem
+              key={index}
+              item={item}
+              isOpen={isOpen}
+              setIsOpen={setIsOpen}
+            />
+          );
         })}
       </div>
 
