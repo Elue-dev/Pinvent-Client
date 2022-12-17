@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { BeatLoader, ClipLoader } from "react-spinners";
 import Card from "../../components/card/Card";
+import UpdatePassword from "../../components/update_password/UpdatePassword";
 import { getUser, getUserToken } from "../../redux/features/auth/auth_slice";
 import { updateProfile } from "../../services/auth_service";
 import "./profile.scss";
@@ -141,6 +142,8 @@ export default function EditProfile() {
           </span>
         </form>
       </Card>
+      <br />
+      <UpdatePassword />
     </div>
   );
 }

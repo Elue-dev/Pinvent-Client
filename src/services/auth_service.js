@@ -42,7 +42,6 @@ export const loginUser = async (userData) => {
 export const logoutUser = async () => {
   try {
     await axios.get(`${server_url}/api/v1/users/logout`);
-    // console.log("success", "Logout successful");
   } catch (error) {
     console.log(error);
     showAlert("error", error.response?.data.message || error.message);
@@ -111,6 +110,25 @@ export const updateProfile = async (token, formData) => {
     );
     if (response?.data.status === "success") {
       showAlert("success", "Profile updated successfully");
+    }
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    showAlert("error", error.response?.data.message || error.message);
+  }
+};
+
+export const updatePassword = async (token, credentials) => {
+  try {
+    const response = await axios.patch(
+      `${server_url}/api/v1/users/update-password`,
+      credentials,
+      {
+        headers: { authorization: `Bearer ${token}` },
+      }
+    );
+    if (response?.data.status === "success") {
+      showAlert("success", "Password updated successfully");
     }
     return response.data;
   } catch (error) {
