@@ -19,7 +19,7 @@
     span.profile-data {
       margin: 0 1rem;
     }
-    span.profile-data > * {
+    span.profile-data:not(:first-child) > * {
       border-top: 1px solid #ccc;
       padding: 5px 0;
       border-width: thick;
@@ -30,6 +30,12 @@
     margin-top: 1rem;
   }
 
+  label {
+    margin-bottom: 0.5rem;
+  }
+  input {
+    width: 100%;
+  }
   p {
     margin-bottom: 1rem;
   }

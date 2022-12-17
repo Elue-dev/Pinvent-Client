@@ -1,7 +1,7 @@
 import axios from "axios";
 import { showAlert } from "../utils/alert/Alert";
 
-const server_url = import.meta.env.VITE_REACT_APP_SERVER_URL;
+export const server_url = import.meta.env.VITE_REACT_APP_SERVER_URL;
 
 export const validateEmail = (email) => {
   return email.match(
@@ -93,6 +93,25 @@ export const getUserProfile = async (token) => {
     const response = await axios.get(`${server_url}/api/v1/users/get-me`, {
       headers: { authorization: `Bearer ${token}` },
     });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    showAlert("error", error.response?.data.message || error.message);
+  }
+};
+
+export const updateProfile = async (token, formData) => {
+  try {
+    const response = await axios.patch(
+      `${server_url}/api/v1/users/update-me`,
+      formData,
+      {
+        headers: { authorization: `Bearer ${token}` },
+      }
+    );
+    if (response?.data.status === "success") {
+      showAlert("success", "Profile updated successfully");
+    }
     return response.data;
   } catch (error) {
     console.log(error);
