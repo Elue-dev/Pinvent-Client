@@ -16,7 +16,7 @@ export const registerUser = async (userData) => {
       userData
     );
     if (response?.data.status === "success") {
-      showAlert("success", "Signup successful!");
+      showAlert("success", "Registration successful");
     }
     return response.data;
   } catch (error) {
@@ -31,7 +31,7 @@ export const loginUser = async (userData) => {
       userData
     );
     if (response?.data.status === "success") {
-      showAlert("success", "Login successful!");
+      showAlert("success", "Login successful");
     }
     return response.data;
   } catch (error) {
@@ -68,7 +68,7 @@ export const resetPassword = async (userData, token) => {
       userData
     );
     if (response?.data.status === "success") {
-      showAlert("success", "Password reset successful! Please login");
+      showAlert("success", "Successful. Please login");
     }
     return response.data;
   } catch (error) {

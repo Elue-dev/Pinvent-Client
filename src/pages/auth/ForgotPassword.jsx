@@ -34,10 +34,10 @@ export default function ForgotPassword() {
     try {
       setLoading(true);
       setError(null);
-      const res = await forgotPassword({ email });
+      await forgotPassword({ email });
       setEmail("");
       setLoading(false);
-      res ? navigate("/login") : null;
+      navigate("/login");
     } catch (error) {
       setLoading(false);
       console.log(error);

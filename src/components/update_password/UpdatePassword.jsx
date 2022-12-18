@@ -38,7 +38,7 @@ export default function UpdatePassword() {
     }
 
     if (newPassword !== confirmPassword) {
-      return showAlert("success", "New password credentials do not match");
+      return showAlert("error", "New password credentials do not match");
     }
 
     try {
@@ -52,7 +52,7 @@ export default function UpdatePassword() {
       const { data } = await updatePassword(token, passwordCredentials);
       console.log(data);
       setLoading(false);
-      showAlert("success", "Password changed successfully. Please login again");
+      showAlert("success", "Password changed. Please login again");
       await logoutUser();
       dispatch(REMOVE_ACTIVE_USER());
       navigate("/login");
