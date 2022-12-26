@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Link } from "react-router-dom";
 import Dashboard from "./components/dashboard/Dashboard";
 import Layout from "./components/layout/Layout";
 import ProductDetail from "./components/product/product_detail/ProductDetail";
@@ -135,6 +135,14 @@ const routes = createBrowserRouter([
           </Layout>
         </Sidebar>
       </ProtectRoute>
+    ),
+  },
+  {
+    path: "*",
+    element: (
+      <h3>
+        Page not found. <Link to="/">Back to Home</Link>
+      </h3>
     ),
   },
 ]);
