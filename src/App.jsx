@@ -12,12 +12,10 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setTimeout(async () => {
-      await logoutUser();
+    setTimeout(() => {
       dispatch(REMOVE_ACTIVE_USER());
-    }, 720000);
-  });
-
+    }, Date.now() + 60 * (60 * 1000));
+  }, []);
   return (
     <div>
       <RouterProvider router={routes} />
