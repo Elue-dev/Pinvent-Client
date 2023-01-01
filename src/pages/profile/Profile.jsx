@@ -19,10 +19,10 @@ export default function Profile() {
   useEffect(() => {
     setLoading(true);
     async function getUserData() {
-      const { data } = await getUserProfile(token);
-      setProfile(data);
+      const response = await getUserProfile(token);
+      setProfile(response.user);
       setLoading(false);
-      dispatch(SET_ACTIVE_USER(data));
+      dispatch(SET_ACTIVE_USER(response.user));
     }
     getUserData();
   }, [dispatch]);
